@@ -11,7 +11,7 @@ function App() {
   
   <HashRouter>
 
-    <header>
+    <header class="bg-zinc-800">
 
       <div class="flex flex-row h-32 w-full">
     
@@ -23,10 +23,14 @@ function App() {
 
         <div class="p-2 basis-1/2 h-full">
 
-          <div class="grid place-content-center w-full h-full">
-          
-              <input class="w-full h-full bg-white hover:bg-slate-300 text-cyan-600 text-md font-semibold rounded-md" placeholder='Buscar'></input>
+          <div class="relative h-full w-full">
+              
+              <div class="absolute bottom-0 right-0 h-1/5 w-full p-8">
+                
+                <input type="text" class="w-full bg-white hover:bg-slate-300 text-md font-semibold rounded-md" placeholder='Buscar' />
 
+              </div>
+              
           </div>
           
         </div>
@@ -52,23 +56,6 @@ function App() {
       </div>
 
     </header>
-    
-
-      {/* <div class="relative m-4 h-24 w-96 ...">
-        
-        <div class="absolute top-0 right-0 h-16 w-16 ...">
-
-          <button class="m-2 w-48 h-16 font-semibold text-bg bg-sky-500 text-white rounded-md shadow-sm opacity-100">Iniciar sesión</button>
-
-        </div>
-        
-        <div class="absolute bottom-0 right-0 h-16 w-16 ...">
-
-          <button class="m-2 w-48 h-16 font-semibold text-bg bg-slate-200 text-white rounded-md shadow-sm opacity-100">Crear una cuenta</button>
-
-        </div>
-      
-      </div> */}
 
     <Routes>
 
