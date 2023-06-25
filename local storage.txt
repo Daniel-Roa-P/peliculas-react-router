@@ -1,0 +1,13 @@
+defaultPeliculas = [ 
+
+{ id: 1 , title: 'Rapidos y Furiosos 9' , urlImage: 'https://spoiler.bolavip.com/__export/1624372370670/sites/bolavip/img/2021/06/22/490827891_contest_1010968_standard_1623951222_crop1624369952765.jpg_72598852.jpg', duration: 'Dom Toretto vive una vida tranquila junto a Letty y su hijo, pero el peligro siempre regresa a su vida. En esta ocasión, el equipo se enfrenta a un complot mundial orquestado por el asesino más temible del mundo: el hermano de Dom.', amount: 10 },  
+
+{ id: 2 , title: 'Escuadron suicida 2' , urlImage: 'https://es.web.img3.acsta.net/pictures/21/03/30/15/41/3645913.jpg', duration: 'Con tal de salir de una prisión infernal, los supervillanos más peligrosos del mundo aceptan una misión del Gobierno: viajar a una remota isla, enemiga de los Estados Unidos y repleta de soldados, para destruir un laboratorio de alta tecnología.', amount: 5 },
+
+{ id: 3 , title: 'Monster Haunter' , urlImage: 'https://pics.filmaffinity.com/Monster_Hunter_La_cacer_a_comienza-171950842-large.jpg', duration: 'En un mundo extraño, la teniente Artemis y su equipo de soldados de élite deben unir fuerzas con un misterioso cazador para luchar contra poderosos monstruos.', amount: 7 },
+
+{ id: 4 , title: 'Bad Boys para siempre' , urlImage: 'https://es.web.img3.acsta.net/pictures/19/12/19/12/29/3194366.jpg', duration: 'Los veteranos agentes Mike Lowery y Marcus Burnett vuelven a colaborar para detener a Armando Armas. En esta ocasión, los apoya el equipo AMMO, un grupo de élite del Departamento de Policía de Miami.', amount: 3 },
+
+]
+
+localStorage.setItem('MOVIES_V1', JSON.stringify(defaultPeliculas));
