@@ -25,8 +25,8 @@ function useMovies () {
       } else {
     
         searchedMovies = movies.filter(movie => {
-    
-          const movieText = movie.text.toLocaleLowerCase();
+
+          const movieText = movie.title.toLocaleLowerCase();
           const searchText = searchValue.toLocaleLowerCase();
           
           return movieText.includes(searchText);
@@ -44,8 +44,11 @@ function useMovies () {
 
           id,
           title,
+          gender,
           urlImage,
+          description,
           duration,
+          price,
           amount
 
         });

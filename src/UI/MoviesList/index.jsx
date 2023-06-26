@@ -5,7 +5,7 @@ function MoviesList(props) {
 
     return(
 
-        <section>
+        <div className="grid grid-cols-4 gap-4 place-content-stretch w-full p-8">
             
             {/* {props.error && props.onError()}
 
@@ -19,13 +19,13 @@ function MoviesList(props) {
 
             {props.searchedMovies.map(props.render)}
 
-            <ul>
+            {/* <ul>
 
             {props.children}
 
-            </ul>
+            </ul> */}
         
-        </section>
+        </div>
 
     );
 

@@ -88,6 +88,11 @@ function HomePage(){
                     
                     key={movie.id}
                     title={movie.title}
+                    gender={movie.gender}
+                    urlImage={movie.urlImage}
+                    description={movie.description}
+                    duration={movie.duration}
+                    price={movie.price}
                     amount={movie.amount}
                     onComplete = {() => purchaseMovie(movie.id)}
                     onEdit={() => {

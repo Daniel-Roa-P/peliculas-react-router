@@ -3,29 +3,44 @@ import React from 'react';
 
 function MovieItem(props) {
 
+    // console.log(props.error);
+    // console.log(props.loading);
+
     return(
 
-        <section>
-            
-            {/* {props.error && props.onError()}
+        <div >
 
-            {(props.loading && !props.error) && props.onLoading()}
-            
-            {(!props.loading && !props.totalTodos && !props.error) && props.onEmptyTodos()}
+            <img className='w-full h-80' src={props.urlImage}/>
 
-            {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmptySearchResults(props.searchText)}
+            <h1 className='text-center bg-blue-300 border-blue-300 font-bold border-8 mt-2'>
+                
+                {props.title}
+                
+            </h1>
 
-            {(!props.error && !props.loading) && props.searchedTodos.map(props.render)} */}
+            <div className='bg-blue-300 border-blue-300 border-8 mt-2'>
 
-            {props.searchedTodos.map(props.render)}
+                <p>
+                    Duracion: {props.duration}
+                </p>
 
-            <ul>
+                <p>
+                    Precio: {props.price}
+                </p>
 
-            {props.children}
+                <p>
 
-            </ul>
-        
-        </section>
+                    Genero: {props.gender}
+
+                </p>
+
+                <p>
+                    Unidades disponibles: {props.amount}
+                </p>
+
+            </div>
+
+        </div>
 
     );
 
