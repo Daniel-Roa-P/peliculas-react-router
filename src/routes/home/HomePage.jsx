@@ -4,6 +4,7 @@ import { MoviesList } from '../../UI/MoviesList';
 import { MovieSearch } from '../../UI/MovieSearch';
 import { MovieItem } from '../../UI/MovieItem';
 import { useNavigate } from 'react-router-dom';
+import { MoviesNav } from '../../UI/MoviesNav';
 
 function HomePage(){
 
@@ -34,35 +35,7 @@ function HomePage(){
 
         <React.Fragment>
 
-            <nav className="bg-gray-50 dark:bg-gray-700">
-                <div className="max-w-screen-xl px-4 py-3 mx-auto">
-                    <div className="flex items-center">
-                        <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
-                            <li>
-                                <p className="font-semibold text-gray-900 dark:text-white" >Seleccione la categoria deseada: </p>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-900 dark:text-white hover:underline">Acción</a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-900 dark:text-white hover:underline">Ciencia Ficción</a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-900 dark:text-white hover:underline">Comedia</a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-900 dark:text-white hover:underline">Drama</a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-900 dark:text-white hover:underline">Terror</a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-gray-900 dark:text-white hover:underline">Todas</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <MoviesNav/>
 
             <MovieSearch 
             
@@ -94,17 +67,15 @@ function HomePage(){
                     duration={movie.duration}
                     price={movie.price}
                     amount={movie.amount}
-                    onComplete = {() => purchaseMovie(movie.id)}
-                    onEdit={() => {
+                    // onComplete = {() => purchaseMovie(movie.id)}
+                    onInfo = {() => {
                     
-                    navigate(
-                        '/edit/' + movie.id,
-                        { state: {movie} }
-                        )
+                            navigate( '/info/' + movie.id )
 
+                        }
                     }
-                    }
-                    onDelete = {() => deleteMovie(movie.id)}
+                    
+                    // onDelete = {() => deleteMovie(movie.id)}
                 
                 />
 

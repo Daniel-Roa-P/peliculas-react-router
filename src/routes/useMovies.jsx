@@ -49,7 +49,8 @@ function useMovies () {
           description,
           duration,
           price,
-          amount
+          amount,
+          idTrailer
 
         });
 
