@@ -74,11 +74,11 @@ function useMovies () {
 
       }
     
-      const editMovie= (id, newTitle) => {
+      const editMovie= (id, newAmount) => {
     
         const movieIndex = movies.findIndex(movie => movie.id === id);
         const newMovies = [...movies];
-        newMovies[movieIndex].title = newTitle; 
+        newMovies[movieIndex].amount = newAmount; 
         saveMovies(newMovies);
 
       }

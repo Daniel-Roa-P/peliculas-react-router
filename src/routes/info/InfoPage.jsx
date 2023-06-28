@@ -12,7 +12,7 @@ function InfoPage(){
 
     const { state, stateUpdaters } = useMovies();
     const { loading , getMovie } = state;
-    // const { editTodo } = stateUpdaters;
+    const { editMovie } = stateUpdaters;
 
     let movieTrailer, movieTitle, movieImage, movieGender, movieDescription, movieDuration, movieAmount, moviePrice;
 
@@ -69,6 +69,7 @@ function InfoPage(){
             <MoviesFooter
                 amount = {movieAmount}
                 price = {moviePrice}
+                submitEvent = {(newAmount) => editMovie(id, newAmount)}
             />
 
         </React.Fragment>
