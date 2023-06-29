@@ -9,6 +9,9 @@ function HeaderMovie(){
             navigate( '/login/' )
     }
     
+    const onRegister = () => {
+        navigate( '/register/' )
+    }
 
     return(
 
@@ -47,7 +50,7 @@ function HeaderMovie(){
 
                     <div className="p-3 absolute bottom-0 right-0 h-1/2 w-full">
 
-                    <button className="h-full w-full bg-white hover:bg-slate-300 text-cyan-600 text-md font-semibold rounded-md">Crear cuenta</button>
+                    <button className="h-full w-full bg-white hover:bg-slate-300 text-cyan-600 text-md font-semibold rounded-md" onClick={onRegister}>Crear cuenta</button>
 
                     </div>
 

@@ -5,6 +5,7 @@ import { HomePage } from './home/HomePage'
 import { LoginPage } from './login/LoginPage'
 import { InfoPage } from './info/InfoPage'
 import { AuthRoute, AuthProvider } from "./auth";
+import { RegisterPage } from './register/RegisterPage';
 
 function App() {
   
@@ -21,6 +22,8 @@ function App() {
         <Route path="/info/:id" element={<InfoPage />}/>
         
         <Route path="/login/" element={<LoginPage />}/>
+
+        <Route path="/register/" element={<RegisterPage />}/>
         
         <Route path="*" element={<p>Not Found</p>}/>
         
