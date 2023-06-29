@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useMovies } from "../useMovies";
 import { MoviesNav } from "../../UI/MoviesNav";
 import { MoviesFooter } from "../../UI/MoviesFooter";
+import { HeaderMovie } from "../../UI/HeaderMovie";
 
 function InfoPage(){
 
@@ -21,6 +22,7 @@ function InfoPage(){
         return (
 
             <React.Fragment>
+                <HeaderMovie/>
                 <MoviesNav/>
                 <p> Cargando ... </p>
             </React.Fragment>
@@ -45,6 +47,7 @@ function InfoPage(){
 
         <React.Fragment>
 
+            <HeaderMovie/>
             <MoviesNav/>
 
             <div className="flex flex-row h-auto">

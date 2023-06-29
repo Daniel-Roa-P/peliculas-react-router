@@ -5,6 +5,7 @@ import { MovieSearch } from '../../UI/MovieSearch';
 import { MovieItem } from '../../UI/MovieItem';
 import { useNavigate } from 'react-router-dom';
 import { MoviesNav } from '../../UI/MoviesNav';
+import { HeaderMovie } from '../../UI/HeaderMovie';
 
 function HomePage(){
 
@@ -34,6 +35,8 @@ function HomePage(){
     return(
 
         <React.Fragment>
+
+            <HeaderMovie/>
 
             <MoviesNav/>
 
