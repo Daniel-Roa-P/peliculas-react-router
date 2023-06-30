@@ -62,4 +62,19 @@ idTrailer: 'LmC5pxr9JZY' },
 
 ]
 
+defaultUsers = [
+
+{ user: 'daniel' ,
+password: '1234' ,
+isAdmin: true ,
+debt: 0},
+
+{ user: 'pepe' ,
+password: '1234' ,
+isAdmin: false ,
+debt: 0},
+	
+]
+
 localStorage.setItem('MOVIES_V1', JSON.stringify(defaultPeliculas));
+localStorage.setItem('USERS_V1', JSON.stringify(defaultUsers));
