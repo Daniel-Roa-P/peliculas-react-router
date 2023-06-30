@@ -14,12 +14,15 @@ function AuthProvider( { children }){
     const navigate = useNavigate();
 
     const [user, setUser] = React.useState(null);
+    const [failedLogin, setFailedLogin]  = React.useState(false);
     
     const login = ( data ) => {
 
         console.log(data);
         usuarioValidado = state.getUser(data.username, data.password);
         
+        console.log(usuarioValidado);
+
         if(usuarioValidado){
 
             setUser(usuarioValidado);
@@ -27,7 +30,8 @@ function AuthProvider( { children }){
 
         } else {
 
-            console.log('el usuario no existe')
+            setFailedLogin(true);
+            navigate('/login');
 
         };
 
@@ -42,9 +46,10 @@ function AuthProvider( { children }){
 
         setUser(null);
         navigate('/');
+
     }
 
-    const auth = {user, login, logout};
+    const auth = {user, failedLogin, login, logout};
 
     return(
 

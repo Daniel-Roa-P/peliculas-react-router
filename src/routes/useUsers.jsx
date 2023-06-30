@@ -54,12 +54,23 @@ function useUsers () {
       
       }
 
+      const getUserIndex = (usuario) => {
+
+        return users.findIndex(user => user.user === usuario);
+
+      }
+
       const getUser = (usuario, clave) => {
 
-        console.log(usuario + " " + clave)
+        const userIndex = getUserIndex(usuario);
 
-        const userIndex = users.findIndex(user => user.user === usuario && user.password === clave);
-        return users[userIndex];
+        if(users[userIndex]?.password === clave){
+
+            return users[userIndex];
+
+        } 
+
+        return null;
 
       }
     
@@ -76,7 +87,8 @@ function useUsers () {
       const state = {
       
         error,
-        loading,  
+        loading,
+        getUserIndex,  
         getUser,
       
       }
