@@ -36,12 +36,13 @@ function HomePage(){
 
         <React.Fragment>
 
-            <HeaderMovie/>
+            <HeaderMovie loading = {loading}/>
 
             <MoviesNav/>
 
             <MovieSearch 
             
+            loading = {loading}
             searchValue = {searchValue} 
             setSearchValue = {setSearchValue}
 
@@ -84,6 +85,7 @@ function HomePage(){
 
                 )}
 
+                
             />
 
         </React.Fragment>

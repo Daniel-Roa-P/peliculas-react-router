@@ -1,16 +1,22 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../routes/auth";
 
-function HeaderMovie(){
+function HeaderMovie(props){
 
     const navigate = useNavigate();
+    const auth = useAuth();
 
     const onLogin = () => {
-            navigate( '/login/' )
+        navigate( '/login/' );
     }
     
     const onRegister = () => {
-        navigate( '/register/' )
+        navigate( '/register/' );
+    }
+
+    const onLogout = () => {
+        auth.logout();
     }
 
     return(
@@ -40,21 +46,64 @@ function HeaderMovie(){
                 </div>
 
                 <div className="basis-1/4 h-full w-1/2">
-                <div className="relative h-full w-full" >
+                
+                    <div className="relative h-full w-full" >
 
-                    <div className="p-3 absolute top-0 right-0 h-1/2 w-full">
+                    { !auth.user ? (
+                    
+                    <React.Fragment>
 
-                    <button className="h-full w-full bg-cyan-500 hover:bg-cyan-600 text-white text-md font-semibold rounded-md" onClick={onLogin}>Iniciar sesion</button>
+                        <div className="p-3 absolute top-0 right-0 h-1/2 w-full">
+
+                            <button disabled={props.loading} className={`h-full w-full bg-cyan-500 text-white text-md font-semibold rounded-md ${props.loading ? "opacity-50" : "hover:bg-cyan-600"}`}  onClick={onLogin}>Iniciar sesion</button>
+
+                        </div>
+
+                        <div className="p-3 absolute bottom-0 right-0 h-1/2 w-full">
+
+                            <button disabled={props.loading} className={`h-full w-full bg-white text-cyan-600 text-md font-semibold rounded-md ${props.loading ? "opacity-50" : "hover:bg-slate-300"}`} onClick={onRegister}>Crear cuenta</button>
+
+                        </div>
+
+                    </React.Fragment>
+
+                    ) : (
+                    
+                        <React.Fragment>
+    
+                            <div className="p-3 absolute top-0 right-0 h-1/2 w-full">
+    
+                                <div class="grid grid-cols-2 gap-2 place-content-center w-full h-full ...">
+                                    <div>
+                                        <p class="font-semibold text-gray-900 dark:text-white text-right ">Usuario: </p>
+                                    </div>
+
+                                    <div>                                        
+                                        <p class="text-gray-900 dark:text-white text-right ">{auth.user.user}</p>
+                                    </div>
+
+                                    <div>
+                                        <p class="font-semibold text-gray-900 dark:text-white text-right ">Cuenta: </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-gray-900 dark:text-white text-right ">{auth.user.debt}</p>
+                                    </div>
+                                </div>
+    
+                            </div>
+    
+                            <div className="p-3 absolute bottom-0 right-0 h-1/2 w-full">
+    
+                                <button className="h-full w-full bg-red-600 hover:bg-slate-300 text-white text-md font-semibold rounded-md" onClick={onLogout}>Cerrar sesión</button>
+    
+                            </div>
+    
+                        </React.Fragment>
+    
+                        ) }
 
                     </div>
-
-                    <div className="p-3 absolute bottom-0 right-0 h-1/2 w-full">
-
-                    <button className="h-full w-full bg-white hover:bg-slate-300 text-cyan-600 text-md font-semibold rounded-md" onClick={onRegister}>Crear cuenta</button>
-
-                    </div>
-
-                </div>
                 </div>
 
             </div>

@@ -14,7 +14,7 @@ function MovieSearch({ searchValue, setSearchValue, loading }) {
             <div className="w-1/2">
 
                 <input 
-                className="text-center w-full bg-white hover:bg-slate-300 text-md font-semibold rounded-md" 
+                className={`text-center w-full bg-white text-md font-semibold rounded-md ${loading ? "opacity-50" : "hover:bg-slate-300"}`} 
                 placeholder='Buscar' 
                 value={searchValue}
                 onChange={onSearchValueChange}

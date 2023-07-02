@@ -5,8 +5,28 @@ function MoviesList(props) {
 
     return(
 
-        <div className="grid grid-cols-4 gap-4 place-content-stretch w-full p-8">
+            <React.Fragment>
             
+            { props.loading ? (
+                    
+                <React.Fragment>
+
+                    <div className="loader-container">
+                        <div className="spinner"></div>
+                    </div>
+
+                </React.Fragment>
+
+                ) : (
+                
+                    <div className="grid grid-cols-4 gap-4 place-content-stretch w-full p-8">
+                    {props.searchedMovies.map(props.render)}
+                    </div>
+                ) 
+            
+            }
+
+
             {/* {props.error && props.onError()}
 
             {(props.loading && !props.error) && props.onLoading()}
@@ -15,17 +35,17 @@ function MoviesList(props) {
 
             {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmptySearchResults(props.searchText)}
 
-            {(!props.error && !props.loading) && props.searchedTodos.map(props.render)} */}
+            {(!props.error && !props.loading) && props.searchedTodos.map(props.render)}
 
             {props.searchedMovies.map(props.render)}
 
-            {/* <ul>
+            <ul>
 
             {props.children}
 
             </ul> */}
-        
-        </div>
+
+    </React.Fragment>
 
     );
 

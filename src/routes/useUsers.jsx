@@ -3,8 +3,6 @@ import { useLocalStorage } from './useLocalStorage';
 
 function useUsers () {
 
-    console.log('sociedad');
-
     const {
 
         item : users,
