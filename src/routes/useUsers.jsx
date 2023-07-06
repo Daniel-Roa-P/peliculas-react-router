@@ -64,7 +64,13 @@ function useUsers () {
 
         if(users[userIndex]?.password === clave){
 
-            return users[userIndex];
+            return {
+              
+              user: users[userIndex].user ,
+              isAdmin: users[userIndex].isAdmin,
+              debt: users[userIndex].debt,
+
+            };
 
         } 
 

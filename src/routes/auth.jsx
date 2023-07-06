@@ -1,31 +1,42 @@
 import React from "react";
 import { useUsers } from "./useUsers";
 import { useNavigate, Navigate, useLocation  } from "react-router-dom";
+import { session } from "./session";
 
 const AuthContext = React.createContext();
 
 function AuthProvider( { children }){
     
     const { state , stateUpdaters } = useUsers();
-    const { loading, getUser } = state;
+    const [ sesion, setSesion ] = React.useState(null);
+    const { getUser } = state;
     const { editDebt } = stateUpdaters;
-    let usuarioValidado;
+    const [failedLogin, setFailedLogin]  = React.useState(false);
+
+    let usuarioValidado = null;
+
 
     const navigate = useNavigate();
-
-    const [user, setUser] = React.useState(null);
-    const [failedLogin, setFailedLogin]  = React.useState(false);
     
     const login = ( data ) => {
 
-        console.log(data);
-        usuarioValidado = state.getUser(data.username, data.password);
+        usuarioValidado = getUser(data.username, data.password);
         
         console.log(usuarioValidado);
 
         if(usuarioValidado){
 
-            setUser(usuarioValidado);
+            setSesion( new session(
+                
+                usuarioValidado.user , 
+                usuarioValidado.isAdmin , 
+                usuarioValidado.debt, 
+                editDebt
+                
+                )    
+            );
+            
+            setFailedLogin(false);
             navigate('/');
 
         } else {
@@ -44,12 +55,12 @@ function AuthProvider( { children }){
 
     const logout = () => {
 
-        setUser(null);
+        setSesion(null);
         navigate('/');
 
     }
 
-    const auth = {user, failedLogin, login, logout};
+    const auth = {sesion, failedLogin, login, logout};
 
     return(
 

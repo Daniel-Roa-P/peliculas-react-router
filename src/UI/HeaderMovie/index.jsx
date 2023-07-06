@@ -1,11 +1,29 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../routes/auth";
+import { useLocation } from "react-router-dom";
+
 
 function HeaderMovie(props){
 
+    const location = useLocation();
     const navigate = useNavigate();
     const auth = useAuth();
+    console.log("sesion: " + auth.sesion);
+    
+    console.log(!auth.sesion);
+
+    const onHome = () => {
+        
+        if(location.pathname === '/'){
+        
+            window.location.reload(false);
+        
+        }
+        
+        navigate( '/' );
+    
+    }
 
     const onLogin = () => {
         navigate( '/login/' );
@@ -16,6 +34,13 @@ function HeaderMovie(props){
     }
 
     const onLogout = () => {
+        
+        if(location.pathname === '/'){
+        
+            window.location.reload(false);
+        
+        }
+
         auth.logout();
     }
 
@@ -27,7 +52,7 @@ function HeaderMovie(props){
             
                 <div className="p-4 basis-1/4 h-full w-1/4 ...">
 
-                <img className="h-full w-full" src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/TV_Azteca_Cinema_logo.svg/2560px-TV_Azteca_Cinema_logo.svg.png'></img>
+                <img className="cursor-pointer h-full w-full" src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/TV_Azteca_Cinema_logo.svg/2560px-TV_Azteca_Cinema_logo.svg.png' onClick={onHome}></img>
                 
                 </div>
 
@@ -49,7 +74,7 @@ function HeaderMovie(props){
                 
                     <div className="relative h-full w-full" >
 
-                    { !auth.user ? (
+                    { !auth.sesion ? (
                     
                     <React.Fragment>
 
@@ -73,21 +98,21 @@ function HeaderMovie(props){
     
                             <div className="p-3 absolute top-0 right-0 h-1/2 w-full">
     
-                                <div class="grid grid-cols-2 gap-2 place-content-center w-full h-full ...">
+                                <div className="grid grid-cols-2 gap-2 place-content-center w-full h-full ...">
                                     <div>
-                                        <p class="font-semibold text-gray-900 dark:text-white text-right ">Usuario: </p>
+                                        <p className="font-semibold text-gray-900 dark:text-white text-right ">Usuario: </p>
                                     </div>
 
                                     <div>                                        
-                                        <p class="text-gray-900 dark:text-white text-right ">{auth.user.user}</p>
+                                        <p className="text-gray-900 dark:text-white text-right ">{auth.sesion.getUser()}</p>
                                     </div>
 
                                     <div>
-                                        <p class="font-semibold text-gray-900 dark:text-white text-right ">Cuenta: </p>
+                                        <p className="font-semibold text-gray-900 dark:text-white text-right ">Cuenta: </p>
                                     </div>
 
                                     <div>
-                                        <p class="text-gray-900 dark:text-white text-right ">{auth.user.debt}</p>
+                                        <p className="text-gray-900 dark:text-white text-right ">{auth.sesion.getDebt()}</p>
                                     </div>
                                 </div>
     
