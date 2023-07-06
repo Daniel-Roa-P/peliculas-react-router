@@ -1,17 +1,14 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from "../../routes/auth";
 
 function MoviesFooter(props){
 
     const navigate = useNavigate();
-    const auth = useAuth();
 
     const onSubmit = (event) => {
 
         event.preventDefault();
-        props.submitEvent(props.amount - 1);
-        props.submitEvent2(Number(props.price));
+        props.submitEvent(props.amount - 1 , Number(props.price));
         navigate('/');
 
     }
@@ -24,17 +21,29 @@ function MoviesFooter(props){
 
         <React.Fragment>
 
-            <footer className="sticky h-12 bottom-0 bg-gray-50 dark:bg-gray-700">
-                <form onSubmit={ !auth.sesion ? onLogin : onSubmit}>
+            <footer className="sticky h-14 bottom-0 bg-gray-50 dark:bg-gray-700">
+                <form className="h-full" onSubmit={ !props.sesion ? onLogin : onSubmit}>
                     <div className="flex flex-row h-full">
-                        <div className="basis-1/2 pt-4">
-                            <p className="text-center font-semibold text-gray-900 dark:text-white" > Unidades disponibles: {props.amount} </p>
-                        </div>
-                        <div className="basis-1/4 pt-4">
-                            <p className="text-center font-semibold text-gray-900 dark:text-white" > Precio: {props.price} </p>
+                        <div className="basis-1/2">
+                            <div className="grid grid-cols-1 gap-4 content-center h-full w-full">
+                                <div className="h-full w-full">
+                                    <p className="text-center font-semibold text-gray-900 dark:text-white" > Unidades disponibles: {props.amount} </p>
+                                </div>
+                            </div>
                         </div>
                         <div className="basis-1/4">
-                            <button type="submit" className="h-full w-full bg-cyan-500 hover:bg-cyan-600 text-white text-md font-semibold rounded-md">Adquirir</button>
+                            <div className="grid grid-cols-1 gap-4 content-center h-full w-full">
+                                <div className="h-full w-full">
+                                    <p className="text-center font-semibold text-gray-900 dark:text-white" > Precio: {props.price} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="basis-1/4">
+                            <div className="grid grid-cols-1 content-center h-full w-full">
+                                <div className="h-full w-full">
+                                    <button disabled={(props.amount < 0)} type="submit" className={`h-10 w-full text-white text-md font-semibold rounded-md ${(props.amount > 0) ? "bg-cyan-500 hover:bg-cyan-600" : "bg-gray-500 opacity-50"}`}>Adquirir</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

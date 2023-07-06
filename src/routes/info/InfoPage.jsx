@@ -4,7 +4,6 @@ import { useMovies } from "../useMovies";
 import { MoviesNav } from "../../UI/MoviesNav";
 import { MoviesFooter } from "../../UI/MoviesFooter";
 import { HeaderMovie } from "../../UI/HeaderMovie";
-import { useUsers } from "../useUsers";
 import { useAuth } from "../../routes/auth";
 
 function InfoPage(){
@@ -18,8 +17,12 @@ function InfoPage(){
     const { loading , getMovie } = state;
     const { editMovie } = stateUpdaters;
 
-    const { stateUserUpdaters } = useUsers();
-    const { editDebt } = stateUserUpdaters;
+    const adquirirPelicula = (id, newAmount, newDebt) => {
+
+        editMovie(id, newAmount);
+        auth.sesion.increaseDebt(newDebt);
+
+    }
 
     let movieTrailer, movieTitle, movieImage, movieGender, movieDescription, movieDuration, movieAmount, moviePrice;
 
@@ -78,8 +81,8 @@ function InfoPage(){
             <MoviesFooter
                 amount = {movieAmount}
                 price = {moviePrice}
-                submitEvent = {(newAmount) => editMovie(id, newAmount)}
-                submitEvent2 = {(newDebt) => auth.sesion.increaseDebt(newDebt)}
+                submitEvent = {(newAmount, newDebt) => adquirirPelicula(id, newAmount, newDebt)}
+                sesion = {auth.sesion}
             />
 
         </React.Fragment>

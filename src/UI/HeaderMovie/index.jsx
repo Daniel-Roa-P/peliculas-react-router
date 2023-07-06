@@ -1,22 +1,21 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../routes/auth";
-import { useLocation } from "react-router-dom";
-
+// import { useLocation } from "react-router-dom";
 
 function HeaderMovie(props){
 
-    const location = useLocation();
+    // const location = useLocation();
     const navigate = useNavigate();
     const auth = useAuth();
 
     const onHome = () => {
         
-        if(location.pathname === '/'){
+        // if(location.pathname === '/'){
         
-            window.location.reload(false);
+        //     window.location.reload(false);
         
-        }
+        // }
         
         navigate( '/' );
     
@@ -32,11 +31,11 @@ function HeaderMovie(props){
 
     const onLogout = () => {
         
-        if(location.pathname === '/'){
+        // if(location.pathname === '/'){
         
-            window.location.reload(false);
+        //     window.location.reload(false);
         
-        }
+        // }
 
         auth.logout();
     }

@@ -37,3 +37,30 @@
     text-decoration: underline;
     cursor: pointer;
   }
+
+  .text-agotado {
+    background-color: #00000000;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+
+  .image-agotado {
+
+    opacity: 0.2;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+
+  }
+
+  .middle-agotado {
+    transition: .5s ease;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
