@@ -7,14 +7,13 @@ const AuthContext = React.createContext();
 
 function AuthProvider( { children }){
     
-    const { state , stateUpdaters } = useUsers();
+    const { stateUser, stateUserUpdaters } = useUsers();
     const [ sesion, setSesion ] = React.useState(null);
-    const { getUser } = state;
-    const { editDebt } = stateUpdaters;
+    const { getUser } = stateUser;
+    const { editDebt } = stateUserUpdaters;
     const [failedLogin, setFailedLogin]  = React.useState(false);
 
     let usuarioValidado = null;
-
 
     const navigate = useNavigate();
     

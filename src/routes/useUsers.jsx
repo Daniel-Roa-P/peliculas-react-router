@@ -13,27 +13,6 @@ function useUsers () {
     
       } = useLocalStorage('USERS_V1', []);
     
-      //  const [searchValue, setSearchValue] = React.useState('');
-    
-    //   let searchedMovies = [];
-    
-    //   if (!searchValue.length >= 1){
-    
-    //     searchedMovies = movies;
-    
-    //   } else {
-    
-    //     searchedMovies = movies.filter(movie => {
-
-    //       const movieText = movie.title.toLocaleLowerCase();
-    //       const searchText = searchValue.toLocaleLowerCase();
-          
-    //       return movieText.includes(searchText);
-    
-    //     })
-    
-    //   }
-    
       const addUser = (user, password, isAdmin, debt) => {
     
         const id = newMovieId(movies);
@@ -78,17 +57,16 @@ function useUsers () {
 
       }
     
-      const editDebt = (user, newDebt) => {
+      const editDebt = (name, newDebt) => {
     
-        const userIndex = users.findIndex(user => user.user === user);
-        const newUsers = [...newUsers];
-        newUsers[userIndex].debt = newDebt; 
+        const userIndex = users.findIndex(user => user.user === name);
+        const newUsers = [...users];
+        newUsers[userIndex].debt = newUsers[userIndex].debt + newDebt; 
         saveUsers(newUsers);
 
       }
-    
 
-      const state = {
+      const stateUser = {
       
         error,
         loading,
@@ -97,14 +75,14 @@ function useUsers () {
       
       }
 
-      const stateUpdaters = {
+      const stateUserUpdaters = {
 
         addUser,
         editDebt,
 
       }
 
-    return{state, stateUpdaters};
+    return{ stateUser, stateUserUpdaters };
         
 }
 

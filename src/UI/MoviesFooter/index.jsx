@@ -1,16 +1,23 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../routes/auth";
 
 function MoviesFooter(props){
 
     const navigate = useNavigate();
+    const auth = useAuth();
 
     const onSubmit = (event) => {
 
         event.preventDefault();
         props.submitEvent(props.amount - 1);
+        props.submitEvent2(Number(props.price));
         navigate('/');
 
+    }
+
+    const onLogin = () => {
+        navigate( '/login/' );
     }
 
     return(
@@ -18,7 +25,7 @@ function MoviesFooter(props){
         <React.Fragment>
 
             <footer className="sticky h-12 bottom-0 bg-gray-50 dark:bg-gray-700">
-                <form onSubmit={onSubmit}>
+                <form onSubmit={ !auth.sesion ? onLogin : onSubmit}>
                     <div className="flex flex-row h-full">
                         <div className="basis-1/2 pt-4">
                             <p className="text-center font-semibold text-gray-900 dark:text-white" > Unidades disponibles: {props.amount} </p>

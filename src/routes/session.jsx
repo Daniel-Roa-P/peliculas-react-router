@@ -70,6 +70,12 @@ class session {
 
     }
 
+    increaseDebt(newDebt){
+
+        this.debt = this.debt + newDebt;
+
+    }
+
 }
 
 export { session };

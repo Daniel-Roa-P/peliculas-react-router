@@ -9,9 +9,6 @@ function HeaderMovie(props){
     const location = useLocation();
     const navigate = useNavigate();
     const auth = useAuth();
-    console.log("sesion: " + auth.sesion);
-    
-    console.log(!auth.sesion);
 
     const onHome = () => {
         

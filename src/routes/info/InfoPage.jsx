@@ -4,16 +4,22 @@ import { useMovies } from "../useMovies";
 import { MoviesNav } from "../../UI/MoviesNav";
 import { MoviesFooter } from "../../UI/MoviesFooter";
 import { HeaderMovie } from "../../UI/HeaderMovie";
+import { useUsers } from "../useUsers";
+import { useAuth } from "../../routes/auth";
 
 function InfoPage(){
 
     const location = useLocation(); 
     const params = useParams();
     const id = Number(params.id);
+    const auth = useAuth();
 
     const { state, stateUpdaters } = useMovies();
     const { loading , getMovie } = state;
     const { editMovie } = stateUpdaters;
+
+    const { stateUserUpdaters } = useUsers();
+    const { editDebt } = stateUserUpdaters;
 
     let movieTrailer, movieTitle, movieImage, movieGender, movieDescription, movieDuration, movieAmount, moviePrice;
 
@@ -73,6 +79,7 @@ function InfoPage(){
                 amount = {movieAmount}
                 price = {moviePrice}
                 submitEvent = {(newAmount) => editMovie(id, newAmount)}
+                submitEvent2 = {(newDebt) => auth.sesion.increaseDebt(newDebt)}
             />
 
         </React.Fragment>
