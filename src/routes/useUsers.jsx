@@ -14,8 +14,6 @@ function useUsers () {
       } = useLocalStorage('USERS_V1', []);
     
       const addUser = (user, password, isAdmin, debt) => {
-    
-        const id = newMovieId(movies);
 
         const newUser = [...users];
         newUser.push({
@@ -40,6 +38,7 @@ function useUsers () {
       const getUser = (usuario, clave) => {
 
         const userIndex = getUserIndex(usuario);
+        console.log(users)
 
         if(users[userIndex]?.password === clave){
 
@@ -84,21 +83,6 @@ function useUsers () {
 
     return{ stateUser, stateUserUpdaters };
         
-}
-
-function newMovieId(moviesList){
-
-  if(!moviesList.length){
-
-    return 1;
-
-  }
-
-  const idList = moviesList.map( movie => movie.id );
-  const idMax = Math.max(...idList);
-
-  return idMax + 1; 
-
 }
 
 export {useUsers};

@@ -85,8 +85,6 @@ function AuthRoute({children}){
     const auth = useAuth();
     const { pathname } = useLocation();
 
-    console.log(pathname);
-
     if(!auth.user){
 
         return <Navigate to = '/login' state={{ locationAfterLogin: pathname  }}/>;

@@ -1,28 +1,88 @@
-import React from "react";
+import { useState, useEffect, useRef} from "react";
 import { useAuth } from "../auth";
-import { Navigate, useLocation } from "react-router-dom";
+import { useRegister } from "../register";
+import { Navigate, useLocation, Link } from "react-router-dom";
 import { MoviesNav } from '../../UI/MoviesNav';
 import { HeaderMovie } from '../../UI/HeaderMovie';
 
 function RegisterPage(){
 
     const auth = useAuth();
-    const [username, setUsername] = React.useState('');
+    const register = useRegister();
+    const [data, setData] = useState({});
+    const [advertencia, setAdvertencia] = useState('');
 
-    const { state } = useLocation()
-    console.log(state);
-    let locationAfterLogin
-    state
-        ? (locationAfterLogin = state.locationAfterLogin)
-        : (locationAfterLogin = '/')
-    
-    console.log(locationAfterLogin);
+    const isMounted = useRef(false);
+
+    useEffect(() => {
+
+
+        if(!isMounted.current){
+
+            isMounted.current = true;
+
+        } else {
+
+            if(!register.verifyLengthUsername(data.username)){
+
+                setAdvertencia("El nombre de usuario debe ser mayor a 4 caracteres.");
+
+            } else {
+
+                if(!register.verifyValidUsername(data.username)){
+
+                    setAdvertencia("El nombre de usuario escrito ya está en uso.");
+        
+                } else {
+        
+                    if(!register.verifyValidPassword(data.password, data.password_confirm)){
+
+                        setAdvertencia("Las contaseñas no coinciden.");
+            
+                    } else {
+
+                        setAdvertencia("");
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }, [data]);
     
     if(auth.user){
 
         return <Navigate to='/' replace/>;
 
     }
+
+    const updateData = e => {
+        
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+    const onRegister = (e) => {
+
+        e.preventDefault();
+
+        if(advertencia.length === 0){
+
+            register.registerNewUser(data.username, data.password);
+
+        } else {
+
+            setAdvertencia("Ingrese bien los datos para continuar.");
+
+        }
+
+    };
 
     const login = (e) => {
 
@@ -46,22 +106,31 @@ function RegisterPage(){
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Cree su cuenta
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" onSubmit={onRegister}>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingrese un nombre de usuario</label>
-                                    <input className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Usuario" required=""/>
+                                    <input name="username" onChange={event => updateData(event)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Usuario" required=""/>
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                                    <input type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                                    <input name="password" onChange={updateData} type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar contraseña</label>
-                                    <input type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                                    <input name="password_confirm" onChange={updateData} type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
                                 </div>
+
+                                {(advertencia.length !== 0) && (
+
+                                <div>
+                                    <label className="block text-center mb-2 text-sm font-medium bg-red-900 text-white-900 dark:text-white"> {advertencia} </label>
+                                </div>
+
+                                )}
+
                                 <button className="w-full text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Crear cuenta</button>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    ¿Ya tiene una cuenta? <a href="#" className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">Inicie sesión</a>
+                                    ¿Ya tiene una cuenta? <Link className="font-medium text-primary-600 hover:underline dark:text-cyan-500" to = {`/login/`}>Inicie sesión</Link>
                                 </p>
                             </form>
                         </div>

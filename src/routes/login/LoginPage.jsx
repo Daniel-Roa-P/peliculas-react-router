@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../auth";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, Link } from "react-router-dom";
 import { MoviesNav } from '../../UI/MoviesNav';
 import { HeaderMovie } from '../../UI/HeaderMovie';
 
@@ -9,10 +9,10 @@ function LoginPage(){
     const auth = useAuth();
     const [data, setData] = React.useState({});
 
-    const { state } = useLocation()
+    // const { state } = useLocation()
 
-    let locationAfterLogin
-    state ? (locationAfterLogin = state.locationAfterLogin) : (locationAfterLogin = '/')
+    // let locationAfterLogin
+    // state ? (locationAfterLogin = state.locationAfterLogin) : (locationAfterLogin = '/')
     
     if(auth.user){
 
@@ -69,7 +69,7 @@ function LoginPage(){
 
                                 <button type="submit" className="w-full text-white bg-cyan-500 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Ingresar</button>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    ¿No tiene una cuenta? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-cyan-500">Crear cuenta</a>
+                                    ¿No tiene una cuenta? <Link className="font-medium text-primary-600 hover:underline dark:text-cyan-500" to = {`/register/`}>Crear cuenta</Link>
                                 </p>
                             </form>
                         </div>
