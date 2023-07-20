@@ -11,7 +11,6 @@ function useLocalStorage(itemName, initialValue) {
 
       try{
 
-        console.log('use Effect');
         const getStorage = async () => {
 
           const localStorageItem = localStorage.getItem(itemName);
@@ -31,7 +30,6 @@ function useLocalStorage(itemName, initialValue) {
           setItem(parsedItem);
           setLoading(false);
           setSincronizedItem(true);
-          console.log('actual: ' + item);
 
         }
 
@@ -61,11 +59,9 @@ function useLocalStorage(itemName, initialValue) {
   };
 
   const sincronizeItem = () => {
-  
-    console.log('antes: ' + item);
+
     setLoading(true);
     setSincronizedItem(false);
-    console.log('despues: ' + item);
   
   };
 

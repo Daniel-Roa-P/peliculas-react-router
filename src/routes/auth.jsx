@@ -20,21 +20,13 @@ function AuthProvider( { children } ){
     const firstLogin = (data) => {
 
         sincronizeUsers();
-
-        setTimeout(() => {
-            
-            login(data);
-          
-        }, 3000);
+        navigate('/login', { state: { username: data.username, password: data.password } });
         
     }
 
     const login = ( data ) => {
 
-        console.log('entrando');
         usuarioValidado = getUser(data.username, data.password);
-        
-        console.log(usuarioValidado);
 
         if(usuarioValidado){
 

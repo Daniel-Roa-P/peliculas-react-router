@@ -25,8 +25,6 @@ function useUsers () {
 
         });
 
-        console.log('añado')
-
         saveUsers(newUser);
       
       }
@@ -40,9 +38,8 @@ function useUsers () {
       const getUser = (usuario, clave) => {
 
         const userIndex = getUserIndex(usuario);
-        console.log(users)
 
-        if(users[userIndex]?.password === clave){
+        if(users[userIndex]?.password === clave && clave !== undefined){
 
             return {
               
@@ -68,7 +65,7 @@ function useUsers () {
       }
 
       const stateUser = {
-      
+
         error,
         loading,
         getUserIndex,  

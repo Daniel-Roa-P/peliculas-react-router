@@ -46,7 +46,7 @@ function useRegister () {
     const registerNewUser = (username , password) => {
 
         addUser(username, password, false, 0);
-        //sincronizeUsers();       
+        sincronizeUsers();       
 
     }
 

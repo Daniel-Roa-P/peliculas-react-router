@@ -7,7 +7,8 @@ import { HeaderMovie } from '../../UI/HeaderMovie';
 function LoginPage(){
 
     const auth = useAuth();
-    const [data, setData] = React.useState({});
+    const location = useLocation();
+    const [data, setData] = React.useState({username: (location.state !== null)? location.state.username : '' , password: (location.state !== null)? location.state.password : ''});
 
     // const { state } = useLocation()
 
@@ -29,6 +30,7 @@ function LoginPage(){
 
     const login = (e) => {
 
+        console.log(data);
         e.preventDefault();
         auth.login(data);
 
@@ -52,11 +54,17 @@ function LoginPage(){
                             <form className="space-y-4 md:space-y-6" onSubmit={login}>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingrese su usuario</label>
-                                    <input name="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Usuario" required="" onChange={updateData} />
+                                    <input name="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Usuario" required="" 
+                                    onChange={updateData} 
+                                    value={data.username}
+                                    />
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                                    <input name="password" type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" onChange={updateData} />
+                                    <input name="password" type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" 
+                                    onChange={updateData} 
+                                    value={data.password} 
+                                    />
                                 </div>
                                 
                                 {(auth.failedLogin) && (
