@@ -72,9 +72,10 @@ function RegisterPage(){
 
         e.preventDefault();
 
-        if(advertencia.length === 0){
+        if(advertencia.length === 0 && (Object.keys(data).length !== 0 ) && register.verifyValidUsername(data.username)){
 
             register.registerNewUser(data.username, data.password);
+            login(e);
 
         } else {
 
@@ -87,7 +88,7 @@ function RegisterPage(){
     const login = (e) => {
 
         e.preventDefault();
-        auth.login({username, locationAfterLogin});
+        auth.firstLogin(data);
 
     };
 

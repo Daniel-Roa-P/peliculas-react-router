@@ -5,20 +5,33 @@ import { session } from "./session";
 
 const AuthContext = React.createContext();
 
-function AuthProvider( { children }){
+function AuthProvider( { children } ){
     
     const { stateUser, stateUserUpdaters } = useUsers();
-    const [ sesion, setSesion ] = React.useState(null);
     const { getUser } = stateUser;
-    const { editDebt } = stateUserUpdaters;
-    const [failedLogin, setFailedLogin]  = React.useState(false);
+    const { editDebt, sincronizeUsers } = stateUserUpdaters;
+    const [ sesion, setSesion ] = React.useState(null);
+    const [ failedLogin, setFailedLogin ]  = React.useState(false);
 
     let usuarioValidado = null;
 
     const navigate = useNavigate();
     
+    const firstLogin = (data) => {
+
+        sincronizeUsers();
+
+        setTimeout(() => {
+            
+            login(data);
+          
+        }, 3000);
+        
+    }
+
     const login = ( data ) => {
 
+        console.log('entrando');
         usuarioValidado = getUser(data.username, data.password);
         
         console.log(usuarioValidado);
@@ -59,7 +72,7 @@ function AuthProvider( { children }){
 
     }
 
-    const auth = {sesion, failedLogin, login, logout};
+    const auth = {sesion, failedLogin, firstLogin, login, logout};
 
     return(
 
@@ -74,10 +87,8 @@ function AuthProvider( { children }){
 }
 
 function useAuth() {
-
     const auth = React.useContext(AuthContext);
     return auth;
-
 }
 
 function AuthRoute({children}){

@@ -7,12 +7,12 @@ function useUsers () {
 
         item : users,
         saveItem : saveUsers,
-        // sincronizeItem: sincronizeUsers,
+        sincronizeItem: sincronizeUsers,
         loading,
         error
     
       } = useLocalStorage('USERS_V1', []);
-    
+
       const addUser = (user, password, isAdmin, debt) => {
 
         const newUser = [...users];
@@ -24,6 +24,8 @@ function useUsers () {
           debt
 
         });
+
+        console.log('añado')
 
         saveUsers(newUser);
       
@@ -70,7 +72,7 @@ function useUsers () {
         error,
         loading,
         getUserIndex,  
-        getUser,
+        getUser
       
       }
 
@@ -78,6 +80,7 @@ function useUsers () {
 
         addUser,
         editDebt,
+        sincronizeUsers
 
       }
 
