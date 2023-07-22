@@ -21,7 +21,8 @@ function useUsers () {
           user,
           password,
           isAdmin,
-          debt
+          debt,
+          articles
 
         });
 
@@ -46,6 +47,7 @@ function useUsers () {
               user: users[userIndex].user ,
               isAdmin: users[userIndex].isAdmin,
               debt: users[userIndex].debt,
+              articles: users[userIndex].articles,
 
             };
 

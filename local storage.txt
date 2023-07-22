@@ -67,12 +67,14 @@ defaultUsers = [
 { user: 'daniel' ,
 password: '1234' ,
 isAdmin: true ,
-debt: 0},
+debt: 0,
+articles: []},
 
 { user: 'pepe' ,
 password: '1234' ,
 isAdmin: false ,
-debt: 0},
+debt: 0,
+articles: []},
 	
 ]
 

@@ -6,7 +6,7 @@ import { session } from "./session";
 const AuthContext = React.createContext();
 
 function AuthProvider( { children } ){
-    
+
     const { stateUser, stateUserUpdaters } = useUsers();
     const { getUser } = stateUser;
     const { editDebt, sincronizeUsers } = stateUserUpdaters;
@@ -14,7 +14,6 @@ function AuthProvider( { children } ){
     const [ failedLogin, setFailedLogin ]  = React.useState(false);
 
     let usuarioValidado = null;
-
     const navigate = useNavigate();
     
     const firstLogin = (data) => {
@@ -35,7 +34,8 @@ function AuthProvider( { children } ){
                 usuarioValidado.user , 
                 usuarioValidado.isAdmin , 
                 usuarioValidado.debt, 
-                editDebt
+                editDebt,
+                usuarioValidado.articles
                 
                 )    
             );

@@ -6,6 +6,7 @@ import { MovieItem } from '../../UI/MovieItem';
 import { useNavigate } from 'react-router-dom';
 import { MoviesNav } from '../../UI/MoviesNav';
 import { HeaderMovie } from '../../UI/HeaderMovie';
+import { BillMovie } from "../../UI/BillMovie";
 
 function HomePage(){
 
@@ -87,6 +88,8 @@ function HomePage(){
 
                 
             />
+
+            <BillMovie/>       
 
         </React.Fragment>
 

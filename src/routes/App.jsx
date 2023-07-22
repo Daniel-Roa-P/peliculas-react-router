@@ -6,6 +6,7 @@ import { LoginPage } from './login/LoginPage'
 import { InfoPage } from './info/InfoPage'
 import { AuthRoute, AuthProvider } from "./auth";
 import { RegisterPage } from './register/RegisterPage';
+import { CartPage } from './cart/CartPage';
 
 function App() {
   
@@ -25,6 +26,8 @@ function App() {
 
         <Route path="/register/" element={<RegisterPage />}/>
         
+        <Route path='/cart/' element={<CartPage/>}/>
+
         <Route path="*" element={<p>Not Found</p>}/>
         
         

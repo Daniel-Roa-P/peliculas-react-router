@@ -30,7 +30,6 @@ function LoginPage(){
 
     const login = (e) => {
 
-        console.log(data);
         e.preventDefault();
         auth.login(data);
 
