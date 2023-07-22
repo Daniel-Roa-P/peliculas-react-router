@@ -98,6 +98,13 @@ class session {
 
     }
 
+    removeArticle(movie){
+
+        const index = myArray.indexOf(movie);
+        this.articles.splice(index, 1);
+
+    }
+
 }
 
 export { session };

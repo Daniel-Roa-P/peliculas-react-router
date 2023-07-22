@@ -21,7 +21,7 @@ function InfoPage(){
 
         editMovie(id, newAmount);
         auth.sesion.increaseDebt(newDebt);
-        auth.sesion.addArticle({title: getMovie(id).title , price: getMovie(id).price});
+        auth.sesion.addArticle({id: getMovie(id).id, title: getMovie(id).title, urlImage: getMovie(id).urlImage , price: getMovie(id).price});
 
     }
 

@@ -3,11 +3,16 @@ import { useAuth } from "../auth";
 import { Navigate } from "react-router-dom";
 import { MoviesNav } from '../../UI/MoviesNav';
 import { HeaderMovie } from '../../UI/HeaderMovie';
+import { CartList } from "../../UI/CartList";
+import { CartItem } from "../../UI/CartItem";
 
 function CartPage(){
 
     const auth = useAuth();
 
+    const currentSesion = auth.sesion;
+    console.log(currentSesion);
+    
     // const { state } = useLocation()
 
     // let locationAfterLogin
@@ -15,15 +20,8 @@ function CartPage(){
     
     if(auth.user){
 
-        return <Navigate to='/' replace/>;
+         return <Navigate to='/' replace/>;
 
-    }
-
-    const updateData = e => {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        })
     }
 
     const login = (e) => {
@@ -41,11 +39,33 @@ function CartPage(){
 
             <MoviesNav/>
 
-            <section className="bg-gray-50 dark:bg-gray-900">
-                
-                <div>CARRITO</div>
+            <CartList
 
-            </section>
+                articles = { currentSesion.getArticles() }
+                render = { article => (
+
+                <CartItem 
+                    
+                    key={article.id}
+                    title={article.title}
+                    urlImage={article.urlImage}
+                    price={article.price}
+                    // onComplete = {() => purchaseMovie(movie.id)}
+                    onRemove = {() => {
+                    
+                            currentSesion.removeArticle(article.id);
+
+                        }
+                    }
+                    
+                    // onDelete = {() => deleteMovie(movie.id)}
+                
+                />
+
+                )}
+
+                
+            />
 
         </>
     );
