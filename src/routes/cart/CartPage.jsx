@@ -11,14 +11,13 @@ function CartPage(){
     const auth = useAuth();
 
     const currentSesion = auth.sesion;
-    console.log(currentSesion);
     
     // const { state } = useLocation()
 
     // let locationAfterLogin
     // state ? (locationAfterLogin = state.locationAfterLogin) : (locationAfterLogin = '/')
     
-    if(auth.user){
+    if(auth.user === undefined){
 
          return <Navigate to='/' replace/>;
 
@@ -51,12 +50,7 @@ function CartPage(){
                     urlImage={article.urlImage}
                     price={article.price}
                     // onComplete = {() => purchaseMovie(movie.id)}
-                    onRemove = {() => {
-                    
-                            currentSesion.removeArticle(article.id);
-
-                        }
-                    }
+                    onRemove = {() => currentSesion.removeArticle(article.id)}
                     
                     // onDelete = {() => deleteMovie(movie.id)}
                 

@@ -95,13 +95,15 @@ class session {
     addArticle(movie){
         
         this.articles.push(movie);
-
+ 
     }
 
-    removeArticle(movie){
+    removeArticle(id){
 
-        const index = myArray.indexOf(movie);
-        this.articles.splice(index, 1);
+        console.log(this.articles);
+        const articleIndex = this.articles.findIndex(article => article.id === id);
+        this.articles.splice(articleIndex,1); 
+        console.log(this.articles);
 
     }
 

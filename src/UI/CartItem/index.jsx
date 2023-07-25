@@ -16,11 +16,11 @@ function CartItem(props) {
             <div className="basis-2/12 h-64 flex items-center justify-center">{props.price}</div>
             <div className="basis-2/12 h-64 rounded-lg flex items-center justify-center">
 
-                <button className='rounded-lg bg-red-500 h-2/5'>
+            <button className='rounded-lg bg-red-500 h-2/5' onClick={props.onRemove}>
 
-                    Retirar del carrito
+                Retirar del carrito
 
-                </button>    
+            </button>    
                 
             </div>
 
