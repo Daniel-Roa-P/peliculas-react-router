@@ -13,7 +13,7 @@ function useUsers () {
     
       } = useLocalStorage('USERS_V1', []);
 
-      const addUser = (user, password, isAdmin, debt) => {
+      const addUser = (user, password, isAdmin, debt, articles) => {
 
         const newUser = [...users];
         newUser.push({

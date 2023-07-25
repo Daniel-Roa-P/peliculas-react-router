@@ -19,14 +19,14 @@ function CartList(props) {
                 ) : (
                 <React.Fragment>
 
-                    <div className='rounded-lg m-4 bg-gray-50 dark:bg-gray-700 pb-4'>
+                    <div className='rounded-lg m-4 bg-gray-50 dark:bg-gray-700 p-4'>
 
-                    <div className="flex flex-row space-x-4 font-mono text-white text-lg font-bold leading-6 px-4 pt-4">
+                    <div className="flex flex-row rounded-lg space-x-4 font-mono text-white text-2xl font-bold leading-6 bg-slate-500">
 
-                        <div className="basis-2/12 h-14 rounded-lg flex items-center justify-center bg-fuchsia-500 shadow-lg">Cartelera</div>
-                        <div className="basis-6/12 h-14 rounded-lg flex items-center justify-center bg-fuchsia-500 shadow-lg">Item</div>
-                        <div className="basis-2/12 h-14 rounded-lg flex items-center justify-center bg-fuchsia-500 shadow-lg">Precio</div>
-                        <div className="basis-2/12 h-14 rounded-lg flex items-center justify-center bg-fuchsia-500 shadow-lg">Cancelar</div>
+                        <div className="basis-2/12 h-14 rounded-lg flex items-center justify-center">Cartelera</div>
+                        <div className="basis-6/12 h-14 rounded-lg flex items-center justify-center">Item</div>
+                        <div className="basis-2/12 h-14 rounded-lg flex items-center justify-center">Precio</div>
+                        <div className="basis-2/12 h-14 rounded-lg flex items-center justify-center">Cancelar</div>
 
                     </div>
 
