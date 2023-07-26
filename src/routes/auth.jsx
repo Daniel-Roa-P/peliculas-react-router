@@ -9,7 +9,7 @@ function AuthProvider( { children } ){
 
     const { stateUser, stateUserUpdaters } = useUsers();
     const { getUser } = stateUser;
-    const { editDebt, sincronizeUsers } = stateUserUpdaters;
+    const { editDebt, sincronizeUsers, includeCartArticles } = stateUserUpdaters;
     const [ sesion, setSesion ] = React.useState(null);
     const [ failedLogin, setFailedLogin ]  = React.useState(false);
 
@@ -35,7 +35,8 @@ function AuthProvider( { children } ){
                 usuarioValidado.isAdmin , 
                 usuarioValidado.debt, 
                 editDebt,
-                usuarioValidado.articles
+                usuarioValidado.articles,
+                includeCartArticles
                 
                 )    
             );

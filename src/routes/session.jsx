@@ -1,12 +1,13 @@
 class session {
     
-    constructor(user, isAdmin, debt, updateDebt, articles) {
+    constructor(user, isAdmin, debt, updateDebt, articles, includeArticules) {
         
         this.setUser(user);
         this.setIsAdmin(isAdmin);
         this.setDebt(debt);
         this.setUpdateDebt(updateDebt);
         this.setArticles(articles);
+        this.setIncludeArticules(includeArticules);
 
     }
 
@@ -68,6 +69,21 @@ class session {
     getUpdateDebt() {
         
         return this.updateDebt;
+
+    }
+
+    setIncludeArticules(newIncludeArticles) {
+        
+        if (newIncludeArticles === null) {
+            throw'Enter an Employee name';
+        }
+        this.includeArticules = newIncludeArticles;
+    
+    }
+
+    getIncludeArticules() {
+        
+        return this.includeArticules(this.user, this.articles);
 
     }
 

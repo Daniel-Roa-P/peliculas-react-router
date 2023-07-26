@@ -66,6 +66,27 @@ function useUsers () {
 
       }
 
+      const includeCartArticles = (name, articles) => {
+
+        const userIndex = users.findIndex(user => user.user === name);
+        const newUsers = [...users];
+        newUsers[userIndex].articles = articles; 
+        saveUsers(newUsers);
+
+        console.log(newUsers);
+
+      }
+
+      const removeCartArticles = (name, id) => {
+
+        const userIndex = users.findIndex(user => user.user === name);
+        const newUsers = [...users];
+        const articleIndex = newUsers[userIndex].articles.findIndex(article => article.id === id);
+        newUsers[userIndex].articles.splice(articleIndex,1); 
+        saveUsers(newUsers);
+
+      }
+
       const stateUser = {
 
         error,
@@ -79,7 +100,9 @@ function useUsers () {
 
         addUser,
         editDebt,
-        sincronizeUsers
+        sincronizeUsers,
+        includeCartArticles,
+        removeCartArticles
 
       }
 

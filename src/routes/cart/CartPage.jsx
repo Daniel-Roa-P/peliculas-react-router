@@ -9,15 +9,14 @@ import { CartItem } from "../../UI/CartItem";
 function CartPage(){
 
     const auth = useAuth();
-
     const currentSesion = auth.sesion;
-    
+
     // const { state } = useLocation()
 
     // let locationAfterLogin
     // state ? (locationAfterLogin = state.locationAfterLogin) : (locationAfterLogin = '/')
     
-    if(auth.user === undefined){
+    if(currentSesion.user === undefined){
 
          return <Navigate to='/' replace/>;
 

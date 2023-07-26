@@ -10,6 +10,7 @@ function BillMovie(props){
     const onSubmit = (event) => {
 
         event.preventDefault();
+        auth.sesion.getIncludeArticules();
         navigate('/cart/');
 
     }
@@ -50,7 +51,7 @@ function BillMovie(props){
                         <div className="basis-1/4">
                             <div className="grid grid-cols-1 content-center h-full w-full">
                                 <div className="h-full w-full">
-                                    <button disabled={(props.amount < 0)} type="submit" className={`h-10 w-full text-white text-md font-semibold rounded-md bg-orange-500 hover:bg-orange-600`}>Pagar</button>
+                                    <button type="submit" className={`h-10 w-full text-white text-md font-semibold rounded-md bg-orange-500 hover:bg-orange-600`}>Pagar</button>
                                 </div>
                             </div>
                         </div>
