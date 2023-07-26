@@ -73,8 +73,6 @@ function useUsers () {
         newUsers[userIndex].articles = articles; 
         saveUsers(newUsers);
 
-        console.log(newUsers);
-
       }
 
       const removeCartArticles = (name, id) => {
@@ -82,6 +80,7 @@ function useUsers () {
         const userIndex = users.findIndex(user => user.user === name);
         const newUsers = [...users];
         const articleIndex = newUsers[userIndex].articles.findIndex(article => article.id === id);
+        newUsers[userIndex].debt = newUsers[userIndex].debt - newUsers[userIndex].articles[articleIndex].price; 
         newUsers[userIndex].articles.splice(articleIndex,1); 
         saveUsers(newUsers);
 

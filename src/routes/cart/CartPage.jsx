@@ -9,14 +9,13 @@ import { CartItem } from "../../UI/CartItem";
 function CartPage(){
 
     const auth = useAuth();
-    const currentSesion = auth.sesion;
 
     // const { state } = useLocation()
 
     // let locationAfterLogin
     // state ? (locationAfterLogin = state.locationAfterLogin) : (locationAfterLogin = '/')
     
-    if(currentSesion.user === undefined){
+    if(auth.sesion === null){
 
          return <Navigate to='/' replace/>;
 
@@ -39,7 +38,7 @@ function CartPage(){
 
             <CartList
 
-                articles = { currentSesion.getArticles() }
+                articles = { auth.sesion.getArticles() }
                 render = { article => (
 
                 <CartItem 
@@ -49,7 +48,7 @@ function CartPage(){
                     urlImage={article.urlImage}
                     price={article.price}
                     // onComplete = {() => purchaseMovie(movie.id)}
-                    onRemove = {() => currentSesion.removeArticle(article.id)}
+                    onRemove = {() => auth.sesion.getRemoveArticule(article.id)}
                     
                     // onDelete = {() => deleteMovie(movie.id)}
                 

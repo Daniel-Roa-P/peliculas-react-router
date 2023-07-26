@@ -11,6 +11,7 @@ function BillMovie(props){
 
         event.preventDefault();
         auth.sesion.getIncludeArticules();
+        auth.sesion.getUpdateDebt();
         navigate('/cart/');
 
     }

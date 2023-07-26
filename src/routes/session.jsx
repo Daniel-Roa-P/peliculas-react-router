@@ -1,6 +1,6 @@
 class session {
     
-    constructor(user, isAdmin, debt, updateDebt, articles, includeArticules) {
+    constructor(user, isAdmin, debt, updateDebt, articles, includeArticules, removeArticle) {
         
         this.setUser(user);
         this.setIsAdmin(isAdmin);
@@ -8,6 +8,7 @@ class session {
         this.setUpdateDebt(updateDebt);
         this.setArticles(articles);
         this.setIncludeArticules(includeArticules);
+        this.setRemoveArticule(removeArticle);
 
     }
 
@@ -68,28 +69,7 @@ class session {
 
     getUpdateDebt() {
         
-        return this.updateDebt;
-
-    }
-
-    setIncludeArticules(newIncludeArticles) {
-        
-        if (newIncludeArticles === null) {
-            throw'Enter an Employee name';
-        }
-        this.includeArticules = newIncludeArticles;
-    
-    }
-
-    getIncludeArticules() {
-        
-        return this.includeArticules(this.user, this.articles);
-
-    }
-
-    increaseDebt(newDebt){
-
-        this.debt = this.debt + newDebt;
+        return this.updateDebt(this.user, this.debt);
 
     }
 
@@ -108,19 +88,51 @@ class session {
 
     }
 
+    setIncludeArticules(newIncludeArticles) {
+        
+        if (newIncludeArticles === null) {
+            throw'Enter an Employee name';
+        }
+        this.includeArticules = newIncludeArticles;
+    
+    }
+
+    getIncludeArticules() {
+        
+        return this.includeArticules(this.user, this.articles);
+
+    }
+
+    setRemoveArticule(newRemoveArticle) {
+        
+        if (newRemoveArticle === null) {
+            throw'Enter an Employee name';
+        }
+        this.removeArticle = newRemoveArticle;
+    
+    }
+
+    getRemoveArticule(id) {
+        
+        const articleIndex = this.articles.findIndex(article => article.id === id);
+        this.debt = this.debt - this.articles[articleIndex].price;
+
+        return this.removeArticle(this.user, id);
+
+    }
+
+    // funtions that doesn't update the LocalStorage
+
+    increaseDebt(newDebt){
+
+        this.debt = this.debt + newDebt;
+
+    }
+
     addArticle(movie){
         
         this.articles.push(movie);
  
-    }
-
-    removeArticle(id){
-
-        console.log(this.articles);
-        const articleIndex = this.articles.findIndex(article => article.id === id);
-        this.articles.splice(articleIndex,1); 
-        console.log(this.articles);
-
     }
 
 }
