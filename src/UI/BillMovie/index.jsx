@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../routes/auth";
 
-function BillMovie(props){
+function BillMovie(){
 
     const navigate = useNavigate();
     const auth = useAuth();
@@ -10,8 +10,6 @@ function BillMovie(props){
     const onSubmit = (event) => {
 
         event.preventDefault();
-        auth.sesion.getIncludeArticules();
-        auth.sesion.getUpdateDebt();
         navigate('/cart/');
 
     }
@@ -38,7 +36,7 @@ function BillMovie(props){
                         <div className="basis-1/2">
                             <div className="grid grid-cols-1 gap-4 content-center h-full w-full">
                                 <div className="h-full w-full">
-                                    <p className="text-center font-semibold text-gray-900 dark:text-white" > Articulos en el carrito: {auth.sesion.getArticles().length} </p>
+                                    <p className="text-center font-semibold text-gray-900 dark:text-white" > Articulos en el carrito: {auth?.sesion.getArticles().length} </p>
                                 </div>
                             </div>
                         </div>

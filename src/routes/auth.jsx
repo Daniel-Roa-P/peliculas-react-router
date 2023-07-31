@@ -35,7 +35,7 @@ function AuthProvider( { children } ){
                 usuarioValidado.isAdmin , 
                 usuarioValidado.debt, 
                 editDebt,
-                usuarioValidado.articles,
+                [...usuarioValidado.articles],
                 includeCartArticles,
                 removeCartArticles
                 

@@ -126,13 +126,15 @@ class session {
     increaseDebt(newDebt){
 
         this.debt = this.debt + newDebt;
+        this.getUpdateDebt();
 
     }
 
     addArticle(movie){
         
         this.articles.push(movie);
- 
+        this.getIncludeArticules();
+        
     }
 
 }

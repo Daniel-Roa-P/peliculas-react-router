@@ -8,7 +8,7 @@ function MoviesFooter(props){
     const onSubmit = (event) => {
 
         event.preventDefault();
-        props.submitEvent(props.amount - 1 , Number(props.price));
+        props.submitEvent(-1 , Number(props.price));
         navigate('/');
 
     }

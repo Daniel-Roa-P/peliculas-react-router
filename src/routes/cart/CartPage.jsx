@@ -5,10 +5,22 @@ import { MoviesNav } from '../../UI/MoviesNav';
 import { HeaderMovie } from '../../UI/HeaderMovie';
 import { CartList } from "../../UI/CartList";
 import { CartItem } from "../../UI/CartItem";
+import { useMovies } from "../useMovies";
 
 function CartPage(){
 
     const auth = useAuth();
+
+    const { state, stateUpdaters } = useMovies();
+    const { loading } = state;
+    const { editMovie } = stateUpdaters;
+
+    const retirarPelicula = (id) => {
+
+        auth.sesion.getRemoveArticule(id);
+        editMovie(id, 1);
+
+    }
 
     // const { state } = useLocation()
 
@@ -20,13 +32,6 @@ function CartPage(){
          return <Navigate to='/' replace/>;
 
     }
-
-    const login = (e) => {
-
-        e.preventDefault();
-        auth.login(data);
-
-    };
 
     return(
 
@@ -48,8 +53,7 @@ function CartPage(){
                     urlImage={article.urlImage}
                     price={article.price}
                     // onComplete = {() => purchaseMovie(movie.id)}
-                    onRemove = {() => auth.sesion.getRemoveArticule(article.id)}
-                    
+                    onRemove = {() => retirarPelicula(article.id) }
                     // onDelete = {() => deleteMovie(movie.id)}
                 
                 />

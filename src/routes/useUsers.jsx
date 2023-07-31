@@ -61,7 +61,7 @@ function useUsers () {
     
         const userIndex = users.findIndex(user => user.user === name);
         const newUsers = [...users];
-        newUsers[userIndex].debt = newUsers[userIndex].debt + newDebt; 
+        newUsers[userIndex].debt = newDebt; 
         saveUsers(newUsers);
 
       }
@@ -110,3 +110,5 @@ function useUsers () {
 }
 
 export {useUsers};
+
+// localStorage.getItem('USERS_V1')
