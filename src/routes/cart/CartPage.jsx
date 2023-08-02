@@ -15,10 +15,10 @@ function CartPage(){
     const { loading } = state;
     const { editMovie } = stateUpdaters;
 
-    const retirarPelicula = (id) => {
+    const retirarPelicula = (idItem, idMovie) => {
 
-        auth.sesion.getRemoveArticule(id);
-        editMovie(id, 1);
+        auth.sesion.getRemoveArticule(idItem);
+        editMovie(idMovie, 1);
 
     }
 
@@ -48,12 +48,12 @@ function CartPage(){
 
                 <CartItem 
                     
-                    key={article.id}
+                    key={article.idItem}
                     title={article.title}
                     urlImage={article.urlImage}
                     price={article.price}
                     // onComplete = {() => purchaseMovie(movie.id)}
-                    onRemove = {() => retirarPelicula(article.id) }
+                    onRemove = {() => retirarPelicula(article.idItem, article.idMovie) }
                     // onDelete = {() => deleteMovie(movie.id)}
                 
                 />

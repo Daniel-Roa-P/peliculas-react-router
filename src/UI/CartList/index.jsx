@@ -17,6 +17,7 @@ function CartList(props) {
                 </React.Fragment>
 
                 ) : (
+                    
                 <React.Fragment>
 
                     <div className='rounded-lg m-4 bg-gray-50 dark:bg-gray-700 p-4'>

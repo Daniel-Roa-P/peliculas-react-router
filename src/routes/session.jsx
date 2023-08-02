@@ -99,7 +99,7 @@ class session {
 
     getIncludeArticules() {
         
-        return this.includeArticules(this.user, this.articles);
+        return this.includeArticules(this.user, [...this.articles]);
 
     }
 
@@ -112,12 +112,13 @@ class session {
     
     }
 
-    getRemoveArticule(id) {
-        
-        const articleIndex = this.articles.findIndex(article => article.id === id);
-        this.debt = this.debt - this.articles[articleIndex].price;
+    getRemoveArticule(idItem) {
 
-        return this.removeArticle(this.user, id);
+        const articleIndex = this.articles.findIndex(article => article.idItem === idItem);
+        this.debt = this.debt - this.articles[articleIndex].price;
+        this.articles.splice(articleIndex,1); 
+
+        return this.removeArticle(this.user, idItem);
 
     }
 
@@ -132,10 +133,27 @@ class session {
 
     addArticle(movie){
         
+        movie.idItem = this.newItemId();
+
         this.articles.push(movie);
         this.getIncludeArticules();
-        
+
     }
+
+    newItemId(){
+
+        if(!this.articles.length){
+      
+          return 1;
+      
+        }
+      
+        const idList = this.articles.map( article => article.idItem );
+        const idMax = Math.max(...idList);
+      
+        return idMax + 1; 
+      
+      }
 
 }
 

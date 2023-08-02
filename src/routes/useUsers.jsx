@@ -75,11 +75,11 @@ function useUsers () {
 
       }
 
-      const removeCartArticles = (name, id) => {
+      const removeCartArticles = (name, idItem) => {
 
         const userIndex = users.findIndex(user => user.user === name);
         const newUsers = [...users];
-        const articleIndex = newUsers[userIndex].articles.findIndex(article => article.id === id);
+        const articleIndex = newUsers[userIndex].articles.findIndex(article => article.idItem === idItem);
         newUsers[userIndex].debt = newUsers[userIndex].debt - newUsers[userIndex].articles[articleIndex].price; 
         newUsers[userIndex].articles.splice(articleIndex,1); 
         saveUsers(newUsers);
